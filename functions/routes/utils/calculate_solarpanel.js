@@ -1,9 +1,16 @@
-function performCalculation(solar_hours, electricity, panel_width, panel_length) {
-  if (panel_width == null)  {
+const fs = require('fs');
+const prices = fs.readFileSync('./routes/utils/installation_price.json');
+const solarData = JSON.parse(prices);
+
+function performCalculation(solar_hours, electricity, panel_width, panel_length, parsed_power) {
+  if (isNaN(panel_width))  {
     panel_width = 1.0
   }
-  if (panel_length == null) {
+  if (isNaN(panel_length)) {
     panel_length = 1.7
+  }
+  if (isNaN(parsed_power)) {
+    parsed_power = 1300
   }
   var solar_array = getSolarArray(solar_hours, electricity)
 
@@ -13,9 +20,10 @@ function performCalculation(solar_hours, electricity, panel_width, panel_length)
  
 
   var area_occupied = getAreaOcuppied(num_panels, panel_width, panel_length)
+  var price = getPrice(parsed_power)
 
   // TODO: tambah installation cost, 
-  return { solarArray: solar_array, numPanels: num_panels, areaOcuppied: area_occupied };
+  return { solarArray: solar_array, numPanels: num_panels, areaOcuppied: area_occupied, price : price};
     
   }
 
@@ -46,6 +54,13 @@ function getAreaOcuppied(num_panels, panel_width, panel_length)  {
   var area_occupied = num_panels * panel_width * panel_length
   area_occupied = area_occupied.toFixed(2)
   return area_occupied
+}
+
+function getPrice(parsed_power) {
+  if (parsed_power != 1300 && parsed_power != 2200 && parsed_power != 3500)   {
+    throw new Error("Invalid power value");
+  }
+  return solarData.solar_panel.filter(panel => panel.daya === parsed_power);
 }
 
 

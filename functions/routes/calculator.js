@@ -1,6 +1,9 @@
 var express = require('express');
 var router = express.Router();
 const {performCalculation} = require("./utils/calculate_solarpanel")
+
+
+
 const cors = require('cors');
 const corsOptions = {
   origin: '*',
@@ -13,15 +16,17 @@ router.use(cors(corsOptions));
 router.post("/",  cors(corsOptions), async (req, res) => {
   console.log('receiving data ...');
   try{
-    var { solar_hours, electricity, panel_width, panel_length} = req.body;
+    var { solar_hours, electricity, panel_width, panel_length, power} = req.body;
     const parsed_solar_hours = parseFloat(solar_hours);
     const parsed_electricity = parseFloat(electricity);
     const parsed_panel_width = parseFloat(panel_width);
     const parsed_panel_length = parseFloat(panel_length);
+    const parsed_power = parseInt(power);
+    console.log(parsed_power)
     if (isNaN(parsed_solar_hours) || isNaN(parsed_electricity)) {
       res.status(400).json({ error: 'Invalid input provided' });
     }
-    var result = performCalculation(solar_hours, electricity, panel_width, panel_length)
+    var result = performCalculation(solar_hours, electricity, parsed_panel_width, parsed_panel_length, parsed_power)
     res.json(result);
   }
   catch (error) {

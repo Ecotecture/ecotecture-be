@@ -1,0 +1,35 @@
+{
+    "solar_panel": [
+      {
+        "id": 1,
+        "daya": 1300,
+        "b_modul" : 6818190,
+        "b_inverter" :4624840,
+        "b_struktur": 1530000,
+        "b_aksesoris": 2040000,
+        "b_instalsai" : 2040000,
+        "total" : 17053030
+      },
+      {
+        "id": 2,
+        "daya": 2200,
+        "b_modul" : 13636380,
+        "b_inverter" :8847520,
+        "b_struktur": 3060000,
+        "b_aksesoris": 4080000,
+        "b_instalsai" : 4080000,
+        "total" : 33703900
+      },
+      {
+        "id": 3,
+        "daya": 3500,
+        "b_modul" :  20454570,
+        "b_inverter" :14075600,
+        "b_struktur": 4590000,
+        "b_aksesoris": 6120000,
+        "b_instalsai" : 6120000,
+        "total" : 51360170
+      }
+    ]
+  }
+  
