@@ -13,14 +13,14 @@ Tim terdiri dari 4 anggota yaitu:
 - Fahira Adindiah 
 
 ### API
-- `https://us-central1-ecotecture-9ff06.cloudfunctions.net/api/calculate/`: Api untuk menghitung kalkulasi instalasi panel surya.
-  request.body:
+##### `https://us-central1-ecotecture-9ff06.cloudfunctions.net/api/calculate/`: Api untuk menghitung kalkulasi instalasi panel surya.
+- request.body:
   `{
     "solar_hours": [integer],
     "electricity" : [integer],
     "power" : [integer]
 }`
-contoh response.body:
+- contoh response.body:
 `{
     "solarArray": "0.00",
     "numPanels": "0",
@@ -38,13 +38,13 @@ contoh response.body:
         }
     ]
 }`
-- `https://us-central1-ecotecture-9ff06.cloudfunctions.net/api/renewable/`: Api untuk menghitung kalkulasi rekomendasi sumber daya terbarukan berdasarkan daerah di Indonesia.
-  request.body:
+##### `https://us-central1-ecotecture-9ff06.cloudfunctions.net/api/renewable/`: Api untuk menghitung kalkulasi rekomendasi sumber daya terbarukan berdasarkan daerah di Indonesia.
+- request.body:
   `{
     "id": "11"
   }`
   (id berdasarkan json file)
-  contoh response.body:
+- contoh response.body:
   {
     "solarHours": 5.5,
     "windStrength": 3,
